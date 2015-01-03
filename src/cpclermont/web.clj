@@ -8,11 +8,12 @@
             [ring.middleware.session.cookie :as cookie]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.basic-authentication :as basic]
+            [selmer.middleware]
+            [cpclermont.views.views :as v]
             [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]))
 
 (defn- authenticated? [user pass]
-  ;; TODO: heroku config:add REPL_USER=[...] REPL_PASSWORD=[...]
   (= [user pass] [(env :repl-user false) (env :repl-password false)]))
 
 (def ^:private drawbridge
@@ -23,12 +24,9 @@
 (defroutes app
   (ANY "/repl" {:as req}
        (drawbridge req))
-  (GET "/" []
-       {:status 200
-        :headers {"Content-Type" "text/plain"}
-        :body (pr-str ["Hello" :from 'Heroku])})
-  (ANY "*" []
-       (route/not-found (slurp (io/resource "404.html")))))
+  (GET "/" [] (v/home))
+  (route/resources "/")
+  (route/not-found (slurp (io/resource "404.html"))))
 
 (defn wrap-error-page [handler]
   (fn [req]
@@ -39,12 +37,14 @@
             :body (slurp (io/resource "500.html"))}))))
 
 (defn wrap-app [app]
-  ;; TODO: heroku config:add SESSION_SECRET=$RANDOM_16_CHARS
   (let [store (cookie/cookie-store {:key (env :session-secret)})]
     (-> app
+        ((if (env :dev)
+           selmer.middleware/wrap-error-page
+           identity))
         ((if (env :production)
            wrap-error-page
-           trace/wrap-stacktrace))
+           trace/wrap-stacktrace)) 
         (site {:session {:store store}}))))
 
 (defn -main [& [port]]
@@ -52,5 +52,5 @@
     (jetty/run-jetty (wrap-app #'app) {:port port :join? false})))
 
 ;; For interactive development:
-;; (.stop server)
-;; (def server (-main))
+#_(def server (-main))
+#_(.stop server)
