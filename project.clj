@@ -1,7 +1,7 @@
 (defproject cpclermont "1.0.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://cpclermont.herokuapp.com"
-  :license {:name "FIXME: choose"
+  :license {:name "MIT"
             :url "http://example.com/FIXME"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.1.8"]
@@ -14,6 +14,7 @@
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
-  :uberjar-name "cpclermont-standalone.jar"
-  :profiles {:production {:env {:production true}}
-             :uberjar {:aot :all}})
+  :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]
+  :profiles {:development {:jvm-opts ["-Dnewrelic.environment=development"]}
+             :staging     {:jvm-opts ["-Dnewrelic.environment=staging"]}
+             :production  {:jvm-opts ["-Dnewrelic.environment=production"]}})
