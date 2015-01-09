@@ -1,1 +1,1 @@
-web: lein with-profile staging trampoline run -m cpclermont.web 
+web: lein with-profile production trampoline run -m cpclermont.web 
