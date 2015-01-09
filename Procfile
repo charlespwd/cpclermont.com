@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/cpclermont-standalone.jar clojure.main -m cpclermont.web
+web: lein with-profile staging trampoline run -m cpclermont.web 

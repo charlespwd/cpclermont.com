@@ -7,3 +7,8 @@ pom.xml
 /checkouts
 /.env
 /target
+profiles.clj
+/.lein*
+/.nrepl
+makefile
+
