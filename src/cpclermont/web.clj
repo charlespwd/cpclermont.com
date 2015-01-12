@@ -3,6 +3,7 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [clojure.tools.logging :as log]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
             [ring.middleware.session.cookie :as cookie]
@@ -21,10 +22,15 @@
       (session/wrap-session)
       (basic/wrap-basic-authentication authenticated?)))
 
+(defn handle-contact [{{:keys [name email message]} :params}]
+  (log/info name "sent you an email from" email "saying" message))
+
 (defroutes app
   (ANY "/repl" {:as req}
-       (drawbridge req))
+    (drawbridge req))
   (GET "/" [] (v/home))
+  (GET "/contact" [] (v/home))
+  (POST "/contact" {:as req} (do (handle-contact req) (v/home)))
   (route/resources "/")
   (route/not-found (slurp (io/resource "404.html"))))
 

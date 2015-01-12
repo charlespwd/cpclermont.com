@@ -12,3 +12,4 @@ profiles.clj
 /.nrepl
 makefile
 Procfile
+.sass-cache

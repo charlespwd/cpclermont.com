@@ -1,7 +1,46 @@
-<footer class="footer">
-  <div class="container">
-    <a href="/">Home</a>
-    <!-- &#45; -->
-    <!-- <a href="/faq">FAQ</a> -->
+<!-- Footer -->
+<div id="footer">
+  <div class="container 75%">
+
+    <header class="major last">
+      <h2>{{ footer-title }}</h2>
+    </header>
+
+    <p>{{ footer-description }}</p>
+
+    <form method="post" action="/contact"> 
+      <div class="row">
+        <div class="6u 12u(3)">
+          <input type="text" name="name" placeholder="Name" />
+        </div>
+        <div class="6u 12u(3)">
+          <input type="email" name="email" placeholder="Email" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="12u">
+          <textarea name="message" placeholder="Message" rows="6"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="12u">
+          <ul class="actions">
+            <li><input type="submit" value="Send Message" /></li>
+          </ul>
+        </div>
+      </div>
+    </form>
+
+    <ul class="icons">
+      <li><a href="https://twitter.com/cpclermont" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+      <li><a href="mailto:charles@cpclermont.com" class="icon fa-paper-plane-o"><span class="label">Email</span></a></li>
+      <li><a href="https://ca.linkedin.com/in/charlespclermont" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+      <li><a href="https://github.com/charlespwd" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+
+    <ul class="copyright">
+      <li>&copy; Charles-Philippe Clermont. All rights reserved.</li>
+    </ul>
+
   </div>
-</footer>
+</div>

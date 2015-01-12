@@ -4,6 +4,7 @@
   :license {:name "MIT"
             :url "http://example.com/FIXME"}
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/tools.logging "0.3.1"]
                  [compojure "1.1.8"]
                  [selmer "0.7.8"]
                  [ring/ring-jetty-adapter "1.2.2"]
@@ -15,6 +16,6 @@
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
   :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]
-  :profiles {:development {:jvm-opts ["-Dnewrelic.environment=development"]}
+  :profiles {:dev         {:jvm-opts ["-Dnewrelic.environment=development"]}
              :staging     {:jvm-opts ["-Dnewrelic.environment=staging"]}
              :production  {:jvm-opts ["-Dnewrelic.environment=production"]}})

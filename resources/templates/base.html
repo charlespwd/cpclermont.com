@@ -4,7 +4,7 @@
 
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>{{ title }}</title>
   <meta name="description" content="{{desc}}">
   <meta name="author" content="Charles-Philippe Clermont">
@@ -20,15 +20,21 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <!-- FONT
+  <!-- JS 
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/skel.min.js"></script>
+  <script src="js/init.js"></script>
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="/css/normalize.css">
-  <link rel="stylesheet" href="/css/skeleton.css">
-  <link rel="stylesheet" href="/css/shame.css">
+  <noscript>
+    <link rel="stylesheet" href="css/skel.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style-wide.css" />
+  </noscript>
+  <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -36,10 +42,7 @@
 
 </head>
 <body>
-  {% block header %}
-  {% endblock %}
-
-  {% block content %} 
+  {% block content %}
   {% endblock %}
 
   {% include "footer.html" %}
@@ -57,5 +60,6 @@
 
 </script>
 <!-- End Google Analystics -->
+{{ livereload|safe }}
 </body>
 </html>
