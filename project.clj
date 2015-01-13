@@ -5,6 +5,7 @@
             :url "http://example.com/FIXME"}
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.logging "0.3.1"]
+                 [com.draines/postal "1.11.3"]
                  [compojure "1.1.8"]
                  [selmer "0.7.8"]
                  [ring/ring-jetty-adapter "1.2.2"]

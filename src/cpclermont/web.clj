@@ -3,6 +3,7 @@
             [compojure.handler :refer [site]]
             [compojure.route :as route]
             [clojure.java.io :as io]
+            [postal.core :as mailer]
             [clojure.tools.logging :as log]
             [ring.middleware.stacktrace :as trace]
             [ring.middleware.session :as session]
@@ -23,14 +24,26 @@
       (basic/wrap-basic-authentication authenticated?)))
 
 (defn handle-contact [{{:keys [name email message]} :params}]
-  (log/info name "sent you an email from" email "saying" message))
+  (let [mess (mailer/send-message {:host (env :mailgun-smtp-server) 
+                                   :port (Integer. (env :mailgun-smtp-port)) 
+                                   :user (env :mailgun-smtp-login)
+                                   :pass (env :mailgun-smtp-password)}
+                                  {:from    email
+                                   :to      "charles@cpclermont.com"
+                                   :subject (str "[CPCLERMONT.COM/CONTACT] Hi from " name)
+                                   :body    message})
+        status (:error mess)]
+    (log/info mess)
+    (cond (= :SUCCESS status) 
+          {:status 201}
+          :else {:status 400})))
 
 (defroutes app
   (ANY "/repl" {:as req}
     (drawbridge req))
   (GET "/" [] (v/home))
   (GET "/contact" [] (v/home))
-  (POST "/contact" {:as req} (do (handle-contact req) (v/home)))
+  (POST "/contact" {:as req} (handle-contact req))
   (route/resources "/")
   (route/not-found (slurp (io/resource "404.html"))))
 
