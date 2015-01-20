@@ -10,13 +10,6 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'resources/public/css/style.css': 'resources/assets/styles/style.scss',
-          'resources/public/css/style-mobile.css': 'resources/assets/styles/style-mobile.scss',
-          'resources/public/css/style-mobilep.css': 'resources/assets/styles/style-mobilep.scss',
-          'resources/public/css/style-narrow.css': 'resources/assets/styles/style-narrow.scss',
-          'resources/public/css/style-narrower.css': 'resources/assets/styles/style-narrower.scss',
-          'resources/public/css/style-normal.css': 'resources/assets/styles/style-normal.scss',
-          'resources/public/css/style-wide.css': 'resources/assets/styles/style-wide.scss',
-          'resources/public/css/ie/v8.css': 'resources/assets/styles/v8.scss',
         }
       },
     },
