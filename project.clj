@@ -16,7 +16,9 @@
   :min-lein-version "2.0.0"
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
-  :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]
-  :profiles {:dev         {:jvm-opts ["-Dnewrelic.environment=development"]}
-             :staging     {:jvm-opts ["-Dnewrelic.environment=staging"]}
-             :production  {:jvm-opts ["-Dnewrelic.environment=production"]}})
+
+  :profiles {:dev         {}
+             :staging     {:jvm-opts ["-Dnewrelic.environment=staging"]
+                           :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]}
+             :production  {:jvm-opts ["-Dnewrelic.environment=production"]
+                           :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]}})
