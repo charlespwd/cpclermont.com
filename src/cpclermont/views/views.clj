@@ -3,34 +3,45 @@
             [cpclermont.views.content :refer [contents]]
             [environ.core :refer [env]]))
 
-(defn defaults []
-  {:livereload (if-not (env :production)
-                 (contents :livereload))})
-
 (p/set-resource-path!
   (clojure.java.io/resource "templates"))
 
 (when (env :dev) (p/cache-off!))
 
-(defn layout [m]
-  (p/render-file "layout.html" m))
+(def defaults [:footer-description
+               :footer-title
+               :jquery
+               :livereload])
 
 (defn content-map
   "Helper method for developer convinience. Instead of writing :key
    (contents :key), this method does it automatically."
-  [ks custom]
-  (merge (defaults) (zipmap ks (map contents ks)) custom))
+  ([ks m]
+   (let [d+ks (concat defaults ks)]
+     (merge (zipmap d+ks (map contents d+ks)) (content-map m))))
+  ([m]
+   (zipmap (keys m) (map #(if (keyword? %) (contents %) %) (vals m)))))
+
+(defn blog
+  ([]
+   (p/render-file
+     "pages/blog-home.html"
+     (content-map []
+                  {:title        :blog-title
+                   :desc         :blog-desc
+                   :img          :blog-img
+                   :url          :base-url
+                   :body-classes "right-sidebar"})))
+  ([id] ""))
 
 (defn home []
   (p/render-file
     "pages/index.html"
     (content-map [:hero-headline
                   :hero-cta
-                  :hero-title
-                  :footer-description
-                  :footer-title]
-                 {:title (contents :index-title)
-                  :desc  (contents :index-desc)
-                  :img   (contents :index-img)
-                  :url   (contents :base-url)
+                  :hero-title]
+                 {:title :index-title
+                  :desc  :index-desc
+                  :img   :index-img
+                  :url   :base-url
                   :body-classes "homepage"})))

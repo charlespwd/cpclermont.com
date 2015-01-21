@@ -42,6 +42,7 @@
   (ANY "/repl" {:as req}
     (drawbridge req))
   (GET "/" [] (v/home))
+  (GET "/blog" [] (v/blog))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))
   (route/resources "/")

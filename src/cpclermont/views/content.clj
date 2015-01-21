@@ -1,4 +1,5 @@
-(ns cpclermont.views.content)
+(ns cpclermont.views.content
+  (:require [environ.core :refer [env]]))
 
 (defn contents [k]
   ({:base-url "http://cpclermont.com"
@@ -13,5 +14,6 @@
     :index-site-name "CP Clermont"
     :index-title "CP Clermont"
     :tag-line "Engineering marketing solutions"
-    :livereload "<script src=\"//localhost:35729/livereload.js\"></script>"}
+    :jquery (if (env :production) "//code.jquery.com/jquery-1.11.1.min.js" "js/jquery.min.js")
+    :livereload (if-not (env :production) "<script src=\"//localhost:35729/livereload.js\"></script>")}
    k))
