@@ -13,3 +13,6 @@ profiles.clj
 makefile
 Procfile
 .sass-cache
+.nrepl-*
+node_modules
+_assets
