@@ -14,6 +14,6 @@
     :index-site-name "CP Clermont"
     :index-title "CP Clermont"
     :tag-line "Engineering marketing solutions"
-    :jquery (if (env :production) "//code.jquery.com/jquery-1.11.1.min.js" "js/jquery.min.js")
+    :jquery (if (env :production) "//code.jquery.com/jquery-1.11.1.min.js" "/js/jquery.min.js")
     :livereload (if-not (env :production) "<script src=\"//localhost:35729/livereload.js\"></script>")}
    k))
