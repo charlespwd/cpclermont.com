@@ -4,11 +4,13 @@
 <div id="header">
 
   <!-- Inner -->
+  {% if header-title %}
   <div class="inner">
     <header>
-      <h1><a href="index.html" id="logo"></a></h1>
+      <h1><a href="index.html" id="logo">{{header-title}}</a></h1>
     </header>
   </div>
+  {% endif %}
 
   {% include "nav.html" %}
 </div>
