@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block header %}
+<div id="header">
+  {% include "nav.html" %}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="wrapper style1">
+
+  <div class="container">
+    <div class="row 200%">
+      <div class="12u" id="content">
+        <article id="main" class="special">
+          {% if headline %}
+          <header>
+            <h2><a href="#">{{ headline }}</a></h2>
+            <p>{{ headline-desc }}</p>
+          </header>
+          {% endif %}
+          {% if headline-img %}
+            <a href="#" class="image featured"><img src="{{ headline-img }}" alt="" /></a>
+            <p>{{ headline-img-desc }}</p>
+          {% endif %}
+          <section>
+            {{ content|safe }}
+          </section>
+        </article>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html" %}
+{% endblock %}

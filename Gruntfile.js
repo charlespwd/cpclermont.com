@@ -15,7 +15,8 @@ module.exports = function(grunt) {
     },
     watch: {
       views: {
-        files: ['src/cpclermont/views/*'],
+        files: ['src/cpclermont/views/*',
+                'resources/articles/**/*.md'],
         options: {
           livereload: true,
         },

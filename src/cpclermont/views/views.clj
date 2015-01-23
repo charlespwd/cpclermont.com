@@ -32,7 +32,11 @@
                    :img          :blog-img
                    :url          :base-url
                    :body-classes "right-sidebar"})))
-  ([id] ""))
+  ([article]
+   (p/render-file
+     "pages/article.html"
+     (content-map []
+                  (merge article {:body-classses "no-sidebar"})))))
 
 (defn home []
   (p/render-file

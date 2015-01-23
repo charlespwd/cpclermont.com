@@ -4,6 +4,8 @@
   :license {:name "MIT"
             :url "http://example.com/FIXME"}
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [markdown-clj "0.9.62"]
+                 [circleci/clj-yaml "0.5.3"]
                  [org.clojure/tools.logging "0.3.1"]
                  [com.draines/postal "1.11.3"]
                  [compojure "1.1.8"]
