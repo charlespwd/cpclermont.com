@@ -8,73 +8,59 @@ headline-desc: "Or How to Finally Start Blogging"
 #headline-img-desc: "TODO"
 ---
 
-<header>
-### Story time
-</header>
+**Are you blogging?**
 
-Are you blogging?
+**Do you think you should?**
 
-Do you think you should?
+**Why aren't you?**
 
-Why aren't you?
-
-I'm asking because it took me 4 months until I finally did it.
-Here's a screenshot of my current asana "goals" list:
+I'm asking because it took me 4 months until I finally started.
+It's probably the same for you.
 
 ![TODO](/images/asana-blog.png)
 
 Reasons for taking so long include:
   * Not knowing what to write about,
-  * Worrying about not providing value to others,
-  * Obtaining negative reactions to what I do,
-  * Being called a fraud or something along those lines,
-  * Being too picky about my website's template,
+  * Worrying about being irrelevant,
+  * Fear of negative reactions,
+  * Being too picky about my website's style,
   * Wanting to do everything myself,
   * The list goes on...
 
-It's finally time.
-Time to break this chain and *ship*.
+### But it's time. Time to *ship*.
 
-Here are some things that you should think about if you are
-*still* not doing it (or anything else on your list of goals for
-that matter).
+What are you waiting for? Let's answer your objections:
 
-  * Dissect a topic down, anything.
-  * Shut up. If you learned something yesterday, odds are there are
-    lots of other people who don't know that already.
-  * Know this: the people who do the least are the most vocal.
-  * The fact you are asking yourself this question solves that
-    problem. It's not like you wake up accidentally using other
-    people. If it's not your intention, you're not doing it!
-  * Look. You can try to vertically center align pictures of
-    yourself four hours at a time if that's what you want, but
+  * **Don't know what to write about?** Take a topic, any topic, and
+    dissect into small parts.
+  * **You worry about being irrelevant?** If you learned
+    something yesterday, odds are more people don't know that already.
+  * **You fear negative reactions?** Know this: the people who do the
+    least are often the most vocal.
+  * **Your site is not perfect?** Look. You can try to vertically center align pictures of
+    yourself for hours at a time if that's what you want, but
     that doesn't bring you any closer to shipping. You can buy
     professional templates online for the price of a happy meal at
-    McDo. Don't be silly.
-  * The curse of the programmer. Learn to let go!
-
-Get over yourself.
+    McDo: Don't be silly.
+  * **You want to do everything yourself?** That's the curse of every programmer. Learn to let go!
 
 Note: When I use *you* I'm mostly talking to myself. But I'm sure
 some of you can benefit from this internal discussion.
 
-So... There you go. My first blog article.
+So... There it is. My first blog article. It sure ain't perfect. But the
+ball is rolling.
 
-What's coming up?
-Well I'm a guy that is really into business,
+As a reader, what should you expect is coming next?
+Well… I'm really into business,
 software and marketing, a bit like @patio11.
-Same same, but different.
+I'd say I'm "same same, but different".
 I'm not internet famous, nor do I have a business serving teachers, nor do
-I even have a business (*yet*) for that matter.
-I am also 23, which would certainly roll the eyes of all the
-seasoned veterans out there.
+I even have a business (*yet*), and… I am also 23.
 
 *YET*, I'm hungry.
-For knowledge,
-for experiences,
-for life, and, lastly, for food.
-
-I'm really hungry.
+For success,
+experiences,
+life, and for food.
 
 I'm out for lunch.
 
