@@ -45,7 +45,7 @@
   (ANY "/repl" {:as req}
     (drawbridge req))
   (GET "/" [] (v/home))
-  (GET "/blog" [] (redirect "/blog/foo") #_(v/blog))
+  (GET "/blog" [] (redirect "/blog/todo-or-how-to-start-a-blog") #_(v/blog))
   (GET "/blog/" [] (redirect "/blog"))
   (GET "/blog/:id" [id] (cond (db/exists? id) (v/blog (db/article id))
                               :else (redirect "/404")))

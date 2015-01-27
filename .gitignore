@@ -16,3 +16,4 @@ Procfile
 .nrepl-*
 node_modules
 _assets
+/resources/articles/drafts/
