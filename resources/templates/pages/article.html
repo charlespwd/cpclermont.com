@@ -26,6 +26,7 @@
           <section>
             {{ content|safe }}
           </section>
+          {% include "mailchimp.html" %}
         </article>
       </div>
     </div>
@@ -35,5 +36,4 @@
 {% endblock %}
 
 {% block footer %}
-{% include "footer.html" %}
 {% endblock %}

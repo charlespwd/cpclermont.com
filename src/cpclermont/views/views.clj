@@ -26,7 +26,9 @@
   ([]
    (p/render-file
      "pages/blog-home.html"
-     (content-map []
+     (content-map [:mailchimp-cta
+                   :mailchimp-strong
+                   :mailchimp-subject]
                   {:title        :blog-title
                    :desc         :blog-desc
                    :img          :blog-img
@@ -35,7 +37,9 @@
   ([article]
    (p/render-file
      "pages/article.html"
-     (content-map []
+     (content-map [:mailchimp-cta
+                   :mailchimp-strong
+                   :mailchimp-subject]
                   (merge article {:body-classses "no-sidebar"})))))
 
 (defn home []

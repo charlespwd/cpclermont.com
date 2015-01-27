@@ -13,6 +13,9 @@
     :index-img "http://cpclermont.com/public/img/cpclermont.jpg"
     :index-site-name "CP Clermont"
     :index-title "CP Clermont"
+    :mailchimp-subject "Grow your business."
+    :mailchimp-strong "Receive my best advice every Wednesday."
+    :mailchimp-cta "Send me the good stuff!"
     :tag-line "Engineering marketing solutions"
     :jquery (if (env :production) "//code.jquery.com/jquery-1.11.1.min.js" "/js/jquery.min.js")
     :livereload (if-not (env :production) "<script src=\"//localhost:35729/livereload.js\"></script>")}

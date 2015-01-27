@@ -1,3 +1,15 @@
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+@include placeholder {
+    font-style:italic;
+    color: lightgray;
+    font-weight:100;
+}
 
 article.special {
   font-size: 1.25em;
@@ -8,6 +20,46 @@ article.special {
     list-style: circle inside;
   }
   img {
-    width: 100%; 
+    width: 100%;
+  }
+}
+
+#mc_embed_signup {
+  padding: 20px;
+  background-color: grey;
+  border: 1px solid grey;
+  header {
+    margin-bottom: 1.5em;
+  }
+  div {
+    margin-bottom: 0.5em;
+  }
+  strong {
+    color: lightgray;
+  }
+  h2 {
+    color: white;
+    line-height: 1.0em;
+    margin-bottom: 0.25em;
+  }
+  .clear {
+    width: 100%;
+  }
+  input[type="email"] {
+    border-radius: 0;
+    height: 2.50em;
+    margin-bottom: 1.0em;
+  }
+  input[type="submit"] {
+    padding-left: 1.0em;
+    padding-right: 1.0em;
+    text-align: left;
+    border-radius: 0;
+    line-height: 1.5em;
+    display: block;
+    font-size: 1.0em;
+    font-weight: bold;
+    white-space: normal;
+    max-width: 90%;
   }
 }
