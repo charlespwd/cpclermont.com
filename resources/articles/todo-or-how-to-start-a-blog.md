@@ -1,4 +1,6 @@
 ---
+id: todo-or-how-to-start-blogging
+author: Charles-Philippe Clermont
 title: TODO, or How to Finally Start Blogging | Charles-Philippe Clermont
 desc: "This is Charles-Philippe Clermont's blog. He's nobody right
 now but is actively working on it."

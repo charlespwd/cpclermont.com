@@ -1,12 +1,12 @@
 (ns cpclermont.views.views
-  (:require [selmer.parser :as p]
+  (:require [selmer.parser :as selmer]
             [cpclermont.views.content :refer [contents]]
             [environ.core :refer [env]]))
 
-(p/set-resource-path!
+(selmer/set-resource-path!
   (clojure.java.io/resource "templates"))
 
-(when (env :dev) (p/cache-off!))
+(when (env :dev) (selmer/cache-off!))
 
 (def defaults [:footer-description
                :footer-title
@@ -14,7 +14,7 @@
                :livereload])
 
 (defn content-map
-  "Helper method for developer convinience. Instead of writing :key
+  "Helper method for developer convenience. Instead of writing :key
    (contents :key), this method does it automatically."
   ([ks m]
    (let [d+ks (concat defaults ks)]
@@ -24,7 +24,7 @@
 
 (defn blog
   ([]
-   (p/render-file
+   (selmer/render-file
      "pages/blog-home.html"
      (content-map [:mailchimp-cta
                    :mailchimp-strong
@@ -35,7 +35,7 @@
                    :url          :base-url
                    :body-classes "right-sidebar"})))
   ([article]
-   (p/render-file
+   (selmer/render-file
      "pages/article.html"
      (content-map [:mailchimp-cta
                    :mailchimp-strong
@@ -43,7 +43,7 @@
                   (merge article {:body-classses "no-sidebar"})))))
 
 (defn home []
-  (p/render-file
+  (selmer/render-file
     "pages/index.html"
     (content-map [:hero-headline
                   :hero-cta

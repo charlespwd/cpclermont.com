@@ -42,13 +42,13 @@
           :else {:status 400})))
 
 (defroutes app
-  (ANY "/repl" {:as req}
-    (drawbridge req))
+  (ANY "/repl" {:as req} (drawbridge req))
   (GET "/" [] (v/home))
-  (GET "/blog" [] (redirect "/blog/todo-or-how-to-start-a-blog") #_(v/blog))
+  (GET "/blog" [] (v/blog))
   (GET "/blog/" [] (redirect "/blog"))
-  (GET "/blog/:id" [id] (cond (db/exists? id) (v/blog (db/article id))
-                              :else (redirect "/404")))
+  (GET "/blog/:id" [id] (if-let [post (db/post id)]
+                          (v/blog post)
+                          (redirect "/404")))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))
   (route/resources "/")
