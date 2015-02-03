@@ -3,6 +3,8 @@
 
 (defn contents [k]
   ({:base-url "http://cpclermont.com"
+    :blog-title "Blog"
+    :blog-desc "Charles-Philippe Clermont blogs about software, business, marketing and life in general."
     :footer-description "I love to talk about software and selectively do consulting work"
     :footer-title "Let's get in touch!"
     :hero-description "I love to talk about software and selectively do consulting work."
