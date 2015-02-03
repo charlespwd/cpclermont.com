@@ -44,10 +44,10 @@
 (defroutes app
   (ANY "/repl" {:as req} (drawbridge req))
   (GET "/" [] (v/home))
-  (GET "/blog" [] (v/blog))
+  (GET "/blog" [] (v/posts db/posts))
   (GET "/blog/" [] (redirect "/blog"))
   (GET "/blog/:id" [id] (if-let [post (db/post id)]
-                          (v/blog post)
+                          (v/post post)
                           (redirect "/404")))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))

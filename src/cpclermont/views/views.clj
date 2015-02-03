@@ -22,8 +22,8 @@
   ([m]
    (zipmap (keys m) (map #(if (keyword? %) (contents %) %) (vals m)))))
 
-(defn blog
-  ([]
+(defn posts
+  ([articles]
    (selmer/render-file
      "pages/blog-home.html"
      (content-map [:mailchimp-cta
@@ -33,7 +33,10 @@
                    :desc         :blog-desc
                    :img          :blog-img
                    :url          :base-url
-                   :body-classes "right-sidebar"})))
+                   :posts        articles
+                   :body-classes "no-sidebar"}))))
+
+(defn post
   ([article]
    (selmer/render-file
      "pages/article.html"

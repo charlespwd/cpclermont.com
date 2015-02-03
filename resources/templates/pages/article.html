@@ -16,16 +16,15 @@
           {% if headline %}
           <header>
             <h2><a href="#">{{ headline }}</a></h2>
-            <p>{{ headline-desc }}</p>
+            <div class="subheadline">{{ headline-desc }}</div>
+            <div class="author">by {{ author }}</div>
           </header>
           {% endif %}
           {% if headline-img %}
             <a href="#" class="image featured"><img src="{{ headline-img }}" alt="" /></a>
             <p>{{ headline-img-desc }}</p>
           {% endif %}
-          <section>
-            {{ content|safe }}
-          </section>
+          {{ content|safe }}
           {% include "mailchimp.html" %}
         </article>
       </div>

@@ -3,6 +3,15 @@
 @import url('font-awesome.min.css');
 
 @import "shame";
+
+$primary-font-color: rgb(72, 57, 73);
+$secondary-color: rgb(128, 217, 156);
+$font-color: rgb(91, 91, 91);
+$primary-border-color: rgb(229, 229, 229);
+$secondary-button-color: rgb(112, 201, 140);
+$footer-background-color: rgb(43, 37, 44);
+$footer-background-color-hover: rgb(59, 53, 60);
+
 /*
 	Helios by Pixelarity
 	pixelarity.com @pixelarity
@@ -16,7 +25,7 @@
 	body
 	{
 		background: #f0f4f4;
-		color: #5b5b5b;
+		color: $font-color;
 	}
 
 		body.is-loading *
@@ -44,7 +53,7 @@
 	h1,h2,h3,h4,h5,h6
 	{
 		font-weight: 400;
-		color: #483949;
+		color: $primary-font-color;
 		line-height: 1.25em;
 	}
 
@@ -79,7 +88,7 @@
 	strong, b
 	{
 		font-weight: 400;
-		color: #483949;
+		color: $primary-font-color;
 	}
 
 	em, i
@@ -101,7 +110,7 @@
 
 		a:hover
 		{
-			color: #80d99c;
+			color: $secondary-color;
 			border-bottom-color: transparent;
 		}
 
@@ -214,9 +223,8 @@
 		header
 		{
 			margin: 0 0 1em 0;
-		}
 
-			header > p
+			& > p
 			{
 				display: block;
 				font-size: 1.5em;
@@ -224,6 +232,7 @@
 				line-height: 1.5em;
 				text-align: inherit;
 			}
+    }
 
 		footer
 		{
@@ -392,7 +401,7 @@
 
 						ul.icons li a:hover
 						{
-							color: #80d99c;
+							color: $secondary-color;
 						}
 
 		ol
@@ -420,7 +429,7 @@
 			{
 				display: block;
 				font-weight: 400;
-				color: #483949;
+				color: $primary-font-color;
 				margin: 0 0 1em 0;
 			}
 
@@ -436,7 +445,7 @@
 				background: #fafafa;
 				width: 100%;
 				border-radius: 0.5em;
-				border: solid 1px #E5E5E5;
+				border: solid 1px $primary-border-color;
 				padding: 1em;
 				-moz-transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
 				-webkit-transition: background-color 0.35s ease-in-out, border-color 0.35s ease-in-out;
@@ -465,7 +474,7 @@
 				form textarea:focus
 				{
 					background: #fff;
-					border-color: #70c98c;
+					border-color: $secondary-button-color;
 				}
 
 				form .formerize-placeholder
@@ -512,7 +521,7 @@
 
 				table.default tbody tr
 				{
-					border-top: solid 1px #e5e5e5;
+					border-top: solid 1px $primary-border-color;
 				}
 
 				table.default tbody tr:first-child
@@ -539,12 +548,12 @@
 
 				table.default thead
 				{
-					border-bottom: solid 2px #e5e5e5;
+					border-bottom: solid 2px $primary-border-color;
 				}
 
 				table.default tfoot
 				{
-					border-top: solid 2px #e5e5e5;
+					border-top: solid 2px $primary-border-color;
 				}
 
 	/* Button */
@@ -556,7 +565,7 @@
 		{
 			position: relative;
 			display: inline-block;
-			background: #70c98c;
+			background: $secondary-button-color;
 			color: #fff;
 			text-align: center;
 			border-radius: 0.5em;
@@ -579,7 +588,7 @@
 			.button:hover
 			{
 				color: #fff;
-				background: #80d99c;
+				background: $secondary-color;
 			}
 
 			input[type="button"].alt,
@@ -587,7 +596,7 @@
 			input[type="reset"].alt,
 			.button.alt
 			{
-				background: #2B252C;
+				background: $footer-background-color;
 			}
 
 
@@ -596,7 +605,7 @@
 				input[type="reset"].alt:hover,
 				.button.alt:hover
 				{
-					background: #3B353C;
+					background: $footer-background-color-hover;
 				}
 
 	/* Post */
@@ -643,7 +652,7 @@
 		{
 			position: relative;
 			display: inline-block;
-			background: #2b252c;
+			background: $footer-background-color;
 			color: #fff;
 			border-radius: 100%;
 			width: 3em;
@@ -896,7 +905,7 @@
 		.dropotron li
 		{
 			border-top: solid 1px rgba(128,128,128,0.2);
-			color: #5b5b5b;
+			color: $font-color;
 		}
 
 			.dropotron li:first-child
@@ -906,7 +915,7 @@
 
 			.dropotron li:hover
 			{
-				color: #80d99c;
+				color: $secondary-color;
 			}
 
 			.dropotron li a,
@@ -1023,14 +1032,14 @@
 		position: relative;
 		overflow: hidden;
 		padding: 6em 0 6em 0;
-		background: #2b252c;
+		background: $footer-background-color;
 		color: #fff;
 	}
 
 		#footer .icon.circled
 		{
 			background: #fff;
-			color: #2b252c;
+			color: $footer-background-color;
 		}
 
 		#footer header

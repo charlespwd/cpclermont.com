@@ -1,7 +1,8 @@
 ---
 id: todo-or-how-to-start-blogging
 author: Charles-Philippe Clermont
-title: TODO, or How to Finally Start Blogging | Charles-Philippe Clermont
+date: 2015-01-28 12:00:00 -5
+title: TODO, or How to Finally Start Blogging
 desc: "This is Charles-Philippe Clermont's blog. He's nobody right
 now but is actively working on it."
 headline: "TODO"
@@ -10,11 +11,11 @@ headline-desc: "Or How to Finally Start Blogging"
 #headline-img-desc: "TODO"
 ---
 
-**Are you blogging?**
+<strong class="big">Are you blogging?</strong>
 
-**Do you think you should?**
+<strong class="big">Do you think you should?</strong>
 
-**Why aren't you?**
+<strong class="big">Why aren't you?</strong>
 
 I'm asking because it took me 4 months until I finally started.
 It's probably the same for you.
@@ -29,7 +30,7 @@ Reasons for taking so long include:
   * Wanting to do everything myself,
   * The list goes on...
 
-### But it's time. Time to *ship*.
+<strong class="big">But it's time. Time to *ship*.</strong>
 
 What are you waiting for? Let's answer your objections:
 
