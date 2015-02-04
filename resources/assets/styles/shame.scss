@@ -21,6 +21,19 @@ article.special {
   margin-right: auto;
   max-width: 66ex; // for better readability
   line-height: 1.4em;
+  section:first-of-type {
+    margin-top: -1em;
+  }
+  section {
+    margin-bottom: 2em;
+  }
+  p + ol, p + ul {
+    margin-top: -0.75em;
+    margin-left: 1em;
+  }
+  ol {
+    list-style: decimal inside;
+  }
   ul {
     list-style: circle inside;
   }
@@ -51,6 +64,9 @@ article.special {
 
 .posts-list {
   font-size: 1.5em;
+  > li {
+    margin-bottom: 1.0em;
+  }
 }
 
 #mc_embed_signup {
