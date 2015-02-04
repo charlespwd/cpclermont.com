@@ -15,7 +15,7 @@
     :index-img "http://cpclermont.com/public/img/cpclermont.jpg"
     :index-site-name "CP Clermont"
     :index-title "CP Clermont"
-    :mailchimp-subject "Grow your business."
+    :mailchimp-subject "Like this post?"
     :mailchimp-strong "Receive my best advice every Wednesday."
     :mailchimp-cta "Send me the good stuff!"
     :tag-line "Engineering marketing solutions"
