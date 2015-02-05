@@ -195,4 +195,4 @@ href="https://twitter.com/cpclermont">@cpclermont</a> on twitter :)
 </section>
 
 [dance]: http://www.youtube.com/watch?v=daC2EPUh22w
-[hn]: http://news.ycombinator.com/
+[hn]: https://news.ycombinator.com/item?id=9005214
