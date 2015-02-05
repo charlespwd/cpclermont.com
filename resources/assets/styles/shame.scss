@@ -29,13 +29,13 @@ article.special {
   }
   p + ol, p + ul {
     margin-top: -0.75em;
-    margin-left: 1em;
+    margin-left: 2em;
   }
   ol {
-    list-style: decimal inside;
+    list-style: decimal;
   }
   ul {
-    list-style: circle inside;
+    list-style: circle;
   }
   img {
     width: 100%;
