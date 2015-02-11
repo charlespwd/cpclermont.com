@@ -25,7 +25,9 @@
             <p>{{ headline-img-desc }}</p>
           {% endif %}
           {{ content|safe }}
-          {% include "mailchimp.html" %}
+          {% if mailchimp-subject %}
+            {% include "mailchimp.html" %}
+          {% endif%}
         </article>
       </div>
     </div>
