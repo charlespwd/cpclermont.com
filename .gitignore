@@ -17,3 +17,4 @@ Procfile
 node_modules
 _assets
 /resources/articles/drafts/
+.idea
