@@ -52,6 +52,8 @@
                           (redirect "/404")))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))
+  (POST "/bingo/:id/:goal" [id goal] (do (bc/score id goal)
+                                         {:status 201}))
   (dashboard-routes "/bestcase")
   (route/resources "/")
   (route/not-found (slurp (io/resource "404.html"))))
@@ -70,8 +72,11 @@
     (bc/set-config! {:store (bcr/create-redis-store (env :redis-conn))})
 
     (let [store (cookie/cookie-store {:key (env :session-secret)})
-          session-config {:store {:flash true, :store store, :cookies-attrs {:max-age (* 60 60 24 30)}}}
-          middleware-config (assoc site-defaults :session session-config)]
+          session-config {:flash true, :store store, :cookies-attrs {:max-age (* 60 60 24 30)}}
+          middleware-config (-> site-defaults
+                                (assoc :session session-config)
+                                (assoc-in [:security :xss-protection] nil) ;; TODO
+                                (assoc-in [:security :anti-forgery] false))]
       (-> app
 
           ((if (env :dev)
