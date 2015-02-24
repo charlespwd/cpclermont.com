@@ -18,3 +18,4 @@ node_modules
 _assets
 /resources/articles/drafts/
 .idea
+dump.rdb
