@@ -1,19 +1,21 @@
 (ns cpclermont.web
   (:require [compojure.core :refer [defroutes GET PUT POST DELETE ANY]]
-            [compojure.handler :refer [site]]
             [compojure.route :as route]
+            [bestcase.core :as bc]
+            [bestcase.store.redis :as bcr]
+            [bestcase.util.ring :refer [default-identity-fn identity-middleware-wrapper dashboard-routes]]
             [cpclermont.db :as db]
+            [cpclermont.views.views :as v]
             [clojure.java.io :as io]
             [postal.core :as mailer]
             [clojure.tools.logging :as log]
             [ring.middleware.stacktrace :as trace]
-            [ring.middleware.session :as session]
+            [ring.middleware.defaults :refer :all]
             [ring.middleware.session.cookie :as cookie]
             [ring.util.response :refer [redirect]]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.basic-authentication :as basic]
             [selmer.middleware]
-            [cpclermont.views.views :as v]
             [cemerick.drawbridge :as drawbridge]
             [environ.core :refer [env]]))
 
@@ -22,7 +24,6 @@
 
 (def ^:private drawbridge
   (-> (drawbridge/ring-handler)
-      (session/wrap-session)
       (basic/wrap-basic-authentication authenticated?)))
 
 (defn handle-contact [{{:keys [name email message]} :params}]
@@ -51,6 +52,7 @@
                           (redirect "/404")))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))
+  (dashboard-routes "/bestcase")
   (route/resources "/")
   (route/not-found (slurp (io/resource "404.html"))))
 
@@ -63,15 +65,31 @@
             :body (slurp (io/resource "500.html"))}))))
 
 (defn wrap-app [app]
-  (let [store (cookie/cookie-store {:key (env :session-secret)})]
-    (-> app
-        ((if (env :dev)
-           selmer.middleware/wrap-error-page
-           identity))
-        ((if (env :production)
-           wrap-error-page
-           trace/wrap-stacktrace))
-        (site {:session {:store store}}))))
+  (do
+    ;; We'd like to have the ab test results persist somewhere.
+    (bc/set-config! {:store (bcr/create-redis-store (env :redis-conn))})
+
+    (let [store (cookie/cookie-store {:key (env :session-secret)})
+          session-config {:store {:flash true, :store store, :cookies-attrs {:max-age (* 60 60 24 30)}}}
+          middleware-config (assoc site-defaults :session session-config)]
+      (-> app
+
+          ((if (env :dev)
+             selmer.middleware/wrap-error-page
+             identity))
+
+          ((if (env :production)
+             wrap-error-page
+             trace/wrap-stacktrace))
+
+          ;; ab testing identity middleware, we need to persist the identity
+          ((identity-middleware-wrapper
+             default-identity-fn
+             {:easy-testing true
+              :simple-no-bots true}))
+
+          ;; needs to be last (!!!)
+          (wrap-defaults middleware-config)))))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
