@@ -17,3 +17,12 @@
     </div>
   </form>
 </div>
+<script type="text/javascript">
+$('#mc-embedded-subscribe-form').submit(function(e) {
+  e.preventDefault(); // intercept submit
+  var form = this;
+  $.post('/bingo/mailchimp-subject-test/signup').always(function() {
+    form.submit(); // do it anyway
+  });
+});
+</script>

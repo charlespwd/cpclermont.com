@@ -52,9 +52,9 @@
                           (redirect "/404")))
   (GET "/contact" [] (v/home))
   (POST "/contact" {:as req} (handle-contact req))
-  (POST "/bingo/:id/:goal" [id goal] (do (bc/score id goal)
+  (POST "/bingo/:id/:goal" [id goal] (do (bc/score (keyword id) (keyword goal))
                                          {:status 201}))
-  (dashboard-routes "/bestcase")
+  (GET "/bestcase" [] (str (bc/results :mailchimp-subject-test :control)))
   (route/resources "/")
   (route/not-found (slurp (io/resource "404.html"))))
 
