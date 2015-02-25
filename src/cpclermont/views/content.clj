@@ -18,7 +18,8 @@
     :index-title "CP Clermont"
     :mailchimp-subject (alt :mailchimp-subject-test
                             :control "Like this post?"
-                            :alternative-1 "Want more?")
+                            :alternative-1 "Want more?"
+                            :alternative-2 "Cool story, bro.")
     :mailchimp-strong "Receive my best advice every Wednesday."
     :mailchimp-cta "Send me the good stuff!"
     :tag-line "Engineering marketing solutions"
