@@ -21,6 +21,10 @@ article.special {
   margin-right: auto;
   max-width: 66ex; // for better readability
   line-height: 1.4em;
+  .summary {
+    background-color: lightgray;
+    padding: 0.75em;
+  }
   section:first-of-type {
     margin-top: -1em;
   }
@@ -29,13 +33,14 @@ article.special {
   }
   p + ol, p + ul {
     margin-top: -0.75em;
-    margin-left: 2em;
   }
   ol {
     list-style: decimal;
+    margin-left: 2em;
   }
   ul {
     list-style: circle;
+    margin-left: 2em;
   }
   img {
     width: 100%;
@@ -59,6 +64,15 @@ article.special {
   }
   .big {
     font-size: 1.25em;
+  }
+  pre code {
+    margin: 0.5em 0 1.5em 0;
+    box-shadow: 0 0 25px lightgrey;
+    font-size: 0.70em;
+  }
+  code {
+    font-family: Courier, mono;
+    font-size: 0.75em;
   }
 }
 
