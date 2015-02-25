@@ -31,6 +31,16 @@
   <script src="/js/init.js"></script>
   <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 
+  <!-- CUSTOM JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% for script in scripts %}
+    {% if script.source %}
+      <script>{{script.source}}</script>
+    {% else %}
+      <script src="{{script}}"></script>
+    {% endif %}
+  {% endfor %}
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <noscript>
@@ -39,6 +49,12 @@
     <link rel="stylesheet" href="/css/style-wide.css" />
   </noscript>
   <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+  <!-- CUSTOM CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  {% for stylesheet in stylesheets %}
+    <link rel="stylesheet" href="{{stylesheet}}">
+  {% endfor %}
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
