@@ -1,8 +1,6 @@
 ---
-id: production-ab-testing-in-clojure
 title: Production A/B Testing in Clojure
 author: Charles-Philippe Clermont
-date: 2015-02-25 12:00:00 -5
 headline: Production A/B Testing in Clojure
 headline-desc: Part I - Setup, identities and cohorts
 scripts:

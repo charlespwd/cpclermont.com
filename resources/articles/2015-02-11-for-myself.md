@@ -1,6 +1,5 @@
 ---
 id: 1000-questions
-date: 2015-02-11 12:00:00 -5
 title: 1000 Questions
 author: Charles-Philippe Clermont
 desc: A real, no B.S. look into the internal debate that goes on in your head as you are building your own thing.

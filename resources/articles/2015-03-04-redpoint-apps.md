@@ -1,6 +1,4 @@
 ---
-id: redpoint
-date: 2015-03-04 12:00:00 -5
 author: Charles-Philippe Clermont
 title: Redpoint
 headline: Redpoint

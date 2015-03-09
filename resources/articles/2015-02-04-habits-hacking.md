@@ -1,7 +1,5 @@
 ---
-id: habits-hacking
 author: Charles-Philippe Clermont
-date: 2015-02-04 12:00:00 -5
 title: Hacking Habits, and the Power of Small Things.
 desc: In this post, Charles talks about the power of creating small habits, tracking them and routinely upgrading them.
 headline: Hacking Habits
