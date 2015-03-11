@@ -4,18 +4,16 @@
             [clojure.string :as str]
             [clojure.java.io :as io]))
 
-(def ^:dynamic *directory* (io/file "resources/articles/"))
+(def ^:dynamic *posts-directory* (io/file "resources/articles/"))
+(def ^:dynamic *static-directory* (io/file "resources/static/"))
 (def ^:private post-publish-time "T12:00:00.0-05:00")
-(def ^:private filename-fmt-re #"^(\d{4}-\d{2}-\d{2})-([^.]*)\.(.*)$") ; 1-date;2-id;3-ext
-(def ^:private filename-fmt-date-group 1)
-(def ^:private filename-fmt-id-group 2)
 
-(defn- fetch-multiple
-  ([]
-   ;; the first one is the *directory* itself
-   (drop 1 (file-seq *directory*)))
-  ([n]
-   (take n (fetch-multiple))))
+;;; Util
+
+(defn- fetch-files
+  [directory]
+  ;; the first one is the *posts-directory* itself
+  (drop 1 (file-seq directory)))
 
 (defn- split-yaml+md [yaml+md]
   (if yaml+md
@@ -23,53 +21,73 @@
           md   (str/replace yaml+md #"^---[\S\s]*---" "")] ; remove the yaml front-matter
       [yaml md])))
 
+(defn parse [yaml+md]
+  (if-let [[yaml md] (split-yaml+md yaml+md)]
+    (merge
+      (yaml/parse-string yaml)
+      {:content (md/md-to-html-string md :heading-anchors true
+                                         :reference-links? true)})))
+
+(defn- merge-with-content [{:keys [file] :as page}]
+  (if file
+    (let [content-map (parse (slurp file))]
+      (merge page content-map))))
+
 (defn- merge-with-date-and-id [{:keys [filename] :as post}]
-  (let [matches (re-find filename-fmt-re filename)
-        date    (nth matches filename-fmt-date-group nil)
-        id      (nth matches filename-fmt-id-group nil)]
+  (let [matches (re-find #"^(\d{4}-\d{2}-\d{2})-([^.]*)\.(.*)$" filename)
+        date    (nth matches 1 nil)
+        id      (nth matches 2 nil)]
     (if id
       (merge post
              {:id id
               :date (clojure.instant/read-instant-date (str date post-publish-time))}))))
 
-(defn parse [yaml+md]
-  (if-let [[yaml md] (split-yaml+md yaml+md)]
-    (merge
-      (yaml/parse-string yaml)
-      {:content (md/md-to-html-string md
-                                      :heading-anchors true
-                                      :reference-links? true)})))
+(defn- merge-with-id [{:keys [filename] :as page}]
+  (let [matches (re-find #"([^.]*)\.(md|markdown)" filename)
+        id      (nth matches 1 nil)]
+    (if id (merge page {:id id}))))
 
-(defn- merge-with-content [{:keys [file] :as post}]
-  (if file
-    (let [content-map (parse (slurp file))]
-      (merge post content-map))))
+(defrecord Page [file filename])
 
-(defrecord Post [file filename])
+(defn- file->page [file]
+  (->Page file (.getName file)))
 
-(defn- file->post [file]
-  (->Post file (.getName file)))
+;;; Pages
+
+(defn pages
+  "Return a seq of pages"
+  ([] (pages *static-directory*))
+  ([directory]
+    (->> (fetch-files directory)
+         (map file->page)
+         (map merge-with-id)
+         (map merge-with-content))))
+
+(defn page
+  "Return a single page"
+  ([id] (page id *static-directory*))
+  ([id directory]
+   (->> (pages directory) ; HACK
+        (filter (comp (partial = id) :id))
+        (first))))
+
+;;; Posts
 
 (defn posts
   "Return a seq of posts."
-  ([]
-   (->> (fetch-multiple)
-        (map file->post)
+  ([] (posts *posts-directory*))
+  ([directory]
+   (->> (fetch-files directory)
+        (map file->page)
         (map merge-with-date-and-id)
         (map merge-with-content)
         (sort-by :date)
-        (reverse))) ; recent first
-
-  ([directory]
-   (binding [*directory* directory]
-     (posts))))
+        (reverse)))) ; recent first
 
 (defn post
   "Return a single post."
-  ([id]
-   (post id *directory*))
-
+  ([id] (post id *posts-directory*))
   ([id directory]
-   (->> (posts directory)
+   (->> (posts directory) ; HACK
         (filter (comp (partial = id) :id))
         (first))))

@@ -5,7 +5,7 @@
 
 (def ^:dynamic *directory* (io/file "test/fixtures/articles"))
 
-(deftest db
+(deftest posts
   (let [posts (db/posts *directory*)]
     (testing "Parsing and fetching posts with #post"
       (let [firstpost (db/post "first" *directory*)
@@ -19,3 +19,15 @@
       (is (= "infinite" (:id (first posts))) "should be ordered by date")
       (is (= "Hello World" (:title (first posts))) "the posts should list titles")
       (is (apply >= (map (comp #(.getTime %) :date) posts)) "should be ordered by in descending order date"))))
+
+(deftest pages
+  (let [pages (db/pages)
+        about (db/page "about")
+        nothing (db/page "this-should-not-exist")]
+    (testing "Fetching pages"
+      (is (seq? pages))
+      (is (< 0 (count pages)))
+      (is (= "about" (:id about)))
+      (is (contains? about :content))
+      (is (contains? about :title))
+      (is (nil? nothing)))))

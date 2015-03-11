@@ -1,5 +1,6 @@
 (ns cpclermont.views.views
   (:require [selmer.parser :as selmer]
+            [bestcase.core :refer [alt]]
             [cpclermont.views.content :refer [contents]]
             [environ.core :refer [env]]))
 
@@ -26,9 +27,7 @@
   ([articles]
    (selmer/render-file
      "pages/blog-home.html"
-     (content-map [:mailchimp-cta
-                   :mailchimp-strong
-                   :mailchimp-subject]
+     (content-map []
                   {:title        :blog-title
                    :desc         :blog-desc
                    :img          :blog-img
@@ -41,9 +40,20 @@
    (selmer/render-file
      "pages/article.html"
      (content-map [:mailchimp-cta
-                   :mailchimp-strong
-                   :mailchimp-subject]
-                  (merge article {:body-classses "no-sidebar"})))))
+                   :mailchimp-strong]
+                  (merge article {:body-classses "no-sidebar"
+                                  :mailchimp-subjet
+                                  (alt :mailchimp-subject-test
+                                       :control "Like this post?"
+                                       :alternative-1 "Want more?"
+                                       :alternative-2 "Cool story, bro.")})))))
+
+(defn page
+  ([m]
+   (selmer/render-file
+     "pages/article.html"
+     (content-map []
+                  (merge m {:body-classes "no-sidebar"})))))
 
 (defn home []
   (selmer/render-file

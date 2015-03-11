@@ -1,6 +1,5 @@
 (ns cpclermont.views.content
-  (:require [environ.core :refer [env]]
-            [bestcase.core :refer [alt]]))
+  (:require [environ.core :refer [env]]))
 
 (defn contents [k]
   ({:base-url "http://cpclermont.com"
@@ -16,10 +15,7 @@
     :index-img "http://cpclermont.com/public/img/cpclermont.jpg"
     :index-site-name "CP Clermont"
     :index-title "CP Clermont"
-    :mailchimp-subject (alt :mailchimp-subject-test
-                            :control "Like this post?"
-                            :alternative-1 "Want more?"
-                            :alternative-2 "Cool story, bro.")
+    :mailchimp-subject "Like this post?"
     :mailchimp-strong "Receive my best advice every Wednesday."
     :mailchimp-cta "Send me the good stuff!"
     :tag-line "Engineering marketing solutions"
