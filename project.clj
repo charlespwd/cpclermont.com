@@ -21,6 +21,10 @@
   :plugins [[environ/environ.lein "0.2.1"]]
   :hooks [environ.leiningen.hooks]
 
+  :source-paths ["src" "target/classes"]
+
+  :main clojure.main
+
   :profiles {:dev         {}
              :staging     {:jvm-opts ["-Dnewrelic.environment=staging"]
                            :java-agents [[com.newrelic.agent.java/newrelic-agent "3.12.1"]]
