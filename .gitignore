@@ -19,3 +19,4 @@ _assets
 /resources/articles/drafts/
 .idea
 dump.rdb
+.DS_Store
